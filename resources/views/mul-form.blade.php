@@ -1,32 +1,22 @@
 @extends('layouts.main')
 
-@section('title', 'multiplication Table Form')
-
+@section('title', $title)
 @section('content')
-    
-    <body>
-    <form  action="{{ route ('mul-result') }}" method="post">
-    @csrf
-    N ::
-    <lable> <select name = "value" required>
-        <option value ="1"> 1</option>
-        <option value ="2"> 2</option>
-        <option value ="3"> 3</option>
-        <option value ="4"> 4</option>
-        <option value ="5"> 5</option>
-        <option value ="6"> 6</option>
-        <option value ="7"> 7</option>
-        <option value ="8"> 8</option>
-        <option value ="9"> 9</option>
-        <option value ="10"> 10</option>
-        <option value ="11"> 11</option>
-        <option value ="12"> 12</option>
+@parent
+
+<form action="{{ route('mul-result') }}" method="POST">
+@csrf
+ 
+  <div>N ::
+    <select name="num" require>
+    @for($n = 2; $n <= 12; $n++)
+      <option value="{{ $n }}">{{ $n }}</option>
+    @endfor
     </select>
-    <button type="submit" name="ans" value="ans">submit</button>
-    </label> 
-    </form>
-    </body>
+  </div></br>
 
-    @endsection
+  <button type="submit">Submit</button>
 
+</form>
 
+@endsection

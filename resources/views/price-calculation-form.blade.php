@@ -1,19 +1,24 @@
-@extends ('layouts.main')
-
-@section('title', 'calculation form')
+@extends('layouts.main')
+@section('title', $title)
 
 @section('content')
-<form action="{{ route ('price-calculation-result') }}" method="post">
-@csrf
-<label>
-Price :: <input type = "text" name = "price">
-Membertype 
+@parent
+<form action="{{ route('price-calculation-result') }}" method="POST">
+    @csrf
+    
+    <div>Price :: 
+        <input type="number" name="price" step="any" require /> 
+    </div></br>
+    <div>Member Type :: 
+        <select id="member-type" name="memberType" required>
+        <option value="">-- Please select --</option>
+        @foreach($memberTypes as $code => $memberType)
+            <option value="{{ $code }}">{{ $memberType['name'] }}</option>
+        @endforeach
+        </select>
+    </div></br>
 
-              @foreach($memberTypes as $code => $memberType)
-                 <option value="{{ $code }}">{{ $memberType['name'] }}</option>
-              @endforeach
-</select>
-<button type ="submit">Submit</button>
-</label>
+    <button type="submit">Submit</button>
+
 </form>
 @endsection

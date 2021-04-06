@@ -1,20 +1,20 @@
 @extends('layouts.main')
 
-@section('title', 'Multiple Table Result')
+@section('title', $title)
 
 @section('content')
-<body>
-    <table border= "2" > 
-    @for ($i=1; $i <= 12 ; $i++ ) 
-    <tr> 
-            @for ($j = 2 ; $j <= $value ; $j++ ) 
-             <td> {{ $i * $j }}  </td>
-            @endfor  
-            </tr>
+@parent
+
+<table>
+<tbody>
+    @for($row = 1; $row <= 12; $row++)
+        <tr>
+          @for($col = 2; $col <= $num; $col++)
+            <td style="border:1px solid black;padding:10px;"> {{ $col * $row }} </td>
+          @endfor
+        </tr>
     @endfor
-    </table>
-        
-</body>
-    
- 
+</tbody>
+</table>
+
 @endsection
